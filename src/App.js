@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './App.css'
 
-class Saludo extends Component { 
+// Material UI Controls
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+
+class Saludo extends Component {
   render() {
     return (
       <p className="App-intro">
@@ -12,7 +18,7 @@ class Saludo extends Component {
   }
 }
 
-class Contador extends Component { 
+class Contador extends Component {
   constructor(props) {
     super(props)
     this.state = { contador: 0 }
@@ -27,53 +33,45 @@ class Contador extends Component {
   }
 
   cambiarContador(n) {
-    this.setState({contador: n})
+    this.setState({ contador: n })
   }
 
   render() {
-    return (<div>
-      <a href="#" onClick={(event) => { this.restar() }}>-</a>
-      {this.state.contador}
-      <a href="#" onClick={(event) => { this.sumar() }}>+</a>
-    </div>)
+    return (
+      <Card>
+        <CardContent>
+          <Typography gutterBottom variant="title" component="h2">
+            Contador
+          </Typography>
+          <Typography gutterBottom variant="headline" component="h3">
+            &nbsp;&nbsp;&nbsp;&nbsp;{this.state.contador}&nbsp;&nbsp;&nbsp;&nbsp;
+          </Typography>
+          <Button variant="contained" size="medium" color="secondary" onClick={(event) => { this.restar() }}>-</Button>
+          &nbsp;
+          <Button variant="contained" size="medium" color="primary" onClick={(event) => { this.sumar() }}>+</Button>
+          <br />
+        </CardContent>
+      </Card>
+    )
   }
 }
 
-
 class App extends Component {
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">React - Hola mundo!</h1>
         </header>
-        <Saludo nombre="Martín"/>
-        <Saludo nombre="Mariano"/>
+        <Saludo nombre="Martín" />
+        <Saludo nombre="Mariano" />
+        <Contador />
         <Contador />
       </div>
-    );
+    )
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-export default App;
+export default App

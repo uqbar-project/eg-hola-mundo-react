@@ -1,6 +1,6 @@
 # Hola mundo: primer ejemplo React
 
-TODO: Build de travis
+[![Build Status](https://travis-ci.org/uqbar-project/eg-hola-mundo-react.svg?branch=master)](https://travis-ci.org/uqbar-project/eg-hola-mundo-react)
 
 ![demo](video/demo.gif)
 

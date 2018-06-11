@@ -135,7 +135,7 @@ Como resultado, la vista volverá a renderizarse:
 
 Como además el único elemento del tag asociado al state es el tag Typography que muestra un título H3 de HTML, React manipula en forma inteligente el [DOM](https://es.wikipedia.org/wiki/Document_Object_Model) para que la interacción con el browser sea mínima. Con F12 activamos las herramientas de desarrollo del navegador:
 
-![DOM](ReactConversorDOM.gif)
+![DOM](video/ReactConversorDOM.gif)
 
 ## Repaso del ciclo de vida del contador
 
@@ -160,3 +160,10 @@ this.setState( {contador : 3} )   // CORRECTO
 
 Más adelante veremos otros ejemplos de uso.
 
+# Frameworks de presentación
+
+Para la presentación utilizamos [Material-UI](https://material-ui.com/), por si el lector quiere conocer.
+
+# Testing
+
+TODO

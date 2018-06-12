@@ -43,12 +43,12 @@ export class Contador extends Component {
           <Typography gutterBottom variant="title" component="h2">
             Contador
           </Typography>
-          <Typography gutterBottom variant="headline" component="h3">
-            &nbsp;&nbsp;&nbsp;&nbsp;{this.state.contador}&nbsp;&nbsp;&nbsp;&nbsp;
-          </Typography>
-          <Button variant="contained" size="medium" color="secondary" onClick={(event) => { this.restar() }}>-</Button>
+          <h3 id="contadorValue">
+            {this.state.contador}
+          </h3>
+          <Button variant="contained" id="restar" size="medium" color="secondary" onClick={(event) => { this.restar() }}>-</Button>
           &nbsp;
-          <Button variant="contained" size="medium" color="primary" onClick={(event) => { this.sumar() }}>+</Button>
+          <Button variant="contained" id="sumar" size="medium" color="primary" onClick={(event) => { this.sumar() }}>+</Button>
           <br />
         </CardContent>
       </Card>

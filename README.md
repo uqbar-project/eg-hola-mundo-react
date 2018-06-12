@@ -118,15 +118,15 @@ Como resultado, la vista volverá a renderizarse:
           <Typography gutterBottom variant="title" component="h2">
             Contador
           </Typography>
-          <Typography gutterBottom variant="headline" component="h3">
-            &nbsp;&nbsp;&nbsp;&nbsp;{this.state.contador}&nbsp;&nbsp;&nbsp;&nbsp;
-          </Typography>
-          <Button variant="contained" size="medium" color="secondary" onClick={(event) => { this.restar() }}>-</Button>
+          <h3 id="contadorValue">
+            {this.state.contador}
+          </h3>
+          <Button variant="contained" id="restar" size="medium" color="secondary" onClick={(event) => { this.restar() }}>-</Button>
           &nbsp;
-          <Button variant="contained" size="medium" color="primary" onClick={(event) => { this.sumar() }}>+</Button>
+          <Button variant="contained" id="sumar" size="medium" color="primary" onClick={(event) => { this.sumar() }}>+</Button>
           <br />
         </CardContent>
-      </Card>
+      </Card>        
     )
   }
 ```
@@ -166,4 +166,48 @@ Para la presentación utilizamos [Material-UI](https://material-ui.com/), por si
 
 # Testing
 
-TODO
+Para el testeo unitario utilizaremos [Enzyme](https://github.com/airbnb/enzyme), un framework de testeo realizado por el equipo de desarrollo de Airbnb. El primer test es que el componente App se renderiza sin romperse, es el que generó create-react-app pero adaptado a los mocks de Enzyme:
+
+```javascript
+it('app levanta ok', () => {
+  shallow(<App />)
+})
+```
+
+_shallow_ es una función que decora nuestro componente para no levantar ningún navegador. Esto lo hacemos en el archivo App.test.js del directorio src.
+
+## Componente que saluda
+
+El segundo test prueba en forma aislada que el componente que saluda lo hace en forma correcta:
+
+```javascript
+it('si saludo a Manola me dice Hola Manola', () => {
+  const wrapper = shallow(<Saludo nombre='Manola' />)
+  const p = wrapper.find('.App-intro')
+  expect(p.text()).toBe("Hola, Manola")
+})
+```
+
+- envolvemos el componente Saludo en un objeto _wrapper_ pasándole como nombre 'Manola'
+- el _wrapper_ de Enzyme permite que busquemos por clase, id o por un tag específico. En este caso buscamos un elemento HTML que tenga como clase App-intro
+- luego chequeamos que el texto de ese tag sea 'Hola, Manola'
+
+Algo bueno que tienen los tests de React es que conservan su unitariedad, se prueban en forma aislada.
+
+## Contador
+
+Por último vamos a testear el contador envolviendo el componente y luego simulando que apretamos 3 veces el botón "+":
+
+```javascript
+it('sumar - contador de 0 a 3', () => {
+  const wrapper = shallow(<Contador/>)
+  const btnSumar = wrapper.find('#sumar')
+  btnSumar.simulate('click')
+  btnSumar.simulate('click')
+  btnSumar.simulate('click')
+  const contador = wrapper.find('#contadorValue')
+  expect(contador.text()).toBe('3')
+})
+```
+
+Como resultado el componente debe mostrar en el tag h3 el valor '3' (estén atentos a que es un string).

@@ -59,7 +59,7 @@ Aquí vemos que lo que enviamos con el siguiente formato
  <Saludo nombre="Martín" />
 ```
 
-lo recibimos como 
+lo recibimos como
 
 ```javascript
 {this.props.nombre}
@@ -69,7 +69,7 @@ en el componente original. ¿Pero qué es [_props_](https://reactjs.org/docs/com
 
 # Contador
 
-El contador es un componente que tiene cambios de estado. Comienza inicialmente en cero, pero luego el usuario puede 
+El contador es un componente que tiene cambios de estado. Comienza inicialmente en cero, pero luego el usuario puede
 
 - hacer click en el botón que suma uno al contador
 - o hacer click en el botón que resta uno al contador

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
 
@@ -21,9 +21,7 @@ export class Saludo extends Component {
 export class Contador extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      contador: 0
-    }
+    this.state = { contador: 0 }
   }
 
   sumar() {
@@ -35,37 +33,23 @@ export class Contador extends Component {
   }
 
   cambiarContador(n) {
-    this.setState({contador: n})
+    this.setState({ contador: n })
   }
 
   render() {
     return (
       <Card>
         <CardContent>
-          <Typography gutterBottom variant="h3" component="h2">
+          <Typography gutterBottom variant="title" component="h2">
             Contador
           </Typography>
           <h3 id="contadorValue">
             {this.state.contador}
           </h3>
-          <Button
-            variant="contained"
-            id="restar"
-            size="medium"
-            color="secondary"
-            onClick={(event) => {
-            this.restar()
-          }}>-</Button>
+          <Button variant="contained" id="restar" size="medium" color="secondary" onClick={(event) => { this.restar() }}>-</Button>
           &nbsp;
-          <Button
-            variant="contained"
-            id="sumar"
-            size="medium"
-            color="primary"
-            onClick={(event) => {
-            this.sumar()
-          }}>+</Button>
-          <br/>
+          <Button variant="contained" id="sumar" size="medium" color="primary" onClick={(event) => { this.sumar() }}>+</Button>
+          <br />
         </CardContent>
       </Card>
     )
@@ -78,13 +62,13 @@ export class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
+          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">React - Hola mundo!</h1>
         </header>
-        <Saludo nombre="Martín"/>
-        <Saludo nombre="Mariano"/>
-        <Contador/>
-        <Contador/>
+        <Saludo nombre="Martín" />
+        <Saludo nombre="Mariano" />
+        <Contador />
+        <Contador />
       </div>
     )
   }

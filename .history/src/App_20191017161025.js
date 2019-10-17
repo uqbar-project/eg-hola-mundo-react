@@ -42,9 +42,9 @@ export class Contador extends Component {
     return (
       <Card>
         <CardContent>
-          <Typography gutterBottom variant="h3" component="h2">
+          <h2>
             Contador
-          </Typography>
+          </h2>
           <h3 id="contadorValue">
             {this.state.contador}
           </h3>

@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^1.2.1",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-scripts": "^2.1.1",
-    "typeface-roboto": "0.0.54"
+    "@material-ui/core": "^4.5.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-scripts": "^3.2.0",
+    "typeface-roboto": "0.0.75"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -16,9 +16,9 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.6.0",
-    "jest-enzyme": "^7.0.0"
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "jest-enzyme": "^7.1.1"
   },
   "browserslist": [
     ">0.2%",

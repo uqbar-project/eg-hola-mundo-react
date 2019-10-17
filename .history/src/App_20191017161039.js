@@ -42,7 +42,7 @@ export class Contador extends Component {
     return (
       <Card>
         <CardContent>
-          <Typography gutterBottom variant="h3" component="h2">
+          <h2Typography gutterBottom component="h2">
             Contador
           </Typography>
           <h3 id="contadorValue">

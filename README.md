@@ -32,7 +32,7 @@ class App extends Component {
 
 ¿Dónde lo hace? En el método render() que trabaja con [**JSX**](https://reactjs.org/docs/introducing-jsx.html), que no es HTML, sino javascript que trabaja con
 
-- tags HTML 
+- tags HTML
 - más los componentes React que nosotros definimos 
 - más componentes React que importamos de bibliotecas de terceros 
 - más código javascript que se evalúa para renderizarse en el contenido a mostrar, por ejemplo con la variable logo 
@@ -151,7 +151,7 @@ Como además el único elemento del tag asociado al state es el tag Typography q
 ReactJS trabaja con las ideas de la programación funcional, esto implica:
 
 - nunca modificar directamente el valor de un objeto. En este caso un número en javascript es inmutable, al igual que un string. Pero **si tenemos un objeto propio, o una colección, no debemos modificarla directamente porque esto rompe el contrato de React**
-- tampoco debemos actualizar el estado directamente 
+- tampoco debemos actualizar el estado directamente
 
 ```javascript
 this.state = { contador: 3 }      // INCORRECTO

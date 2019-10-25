@@ -17,7 +17,7 @@ Como es nuestro primer ejemplo, estaremos definiendo dos componentes en el archi
 El componente que saluda recibe como parámetro un string, que corresponde al nombre de la persona que queremos saludar. El componente principal de React llama al que saluda mediante su tag correspondiente:
 
 ```javascript
-class App extends Component {
+function App(){
 
   render() {
     return (
@@ -37,14 +37,14 @@ class App extends Component {
 - más componentes React que importamos de bibliotecas de terceros 
 - más código javascript que se evalúa para renderizarse en el contenido a mostrar, por ejemplo con la variable logo 
 
-Saludo se define como una clase que extiende Component y que sabe mostrar un div:
+Saludo se define como una funcion que sabe mostrar un div:
 
 ```javascript
-class Saludo extends Component {
+function Saludo(props) {
   render() {
     return (
       <p className="App-intro">
-        Hola, {this.props.nombre}
+        Hola, {props.nombre}
       </p>
     )
   }
@@ -62,7 +62,7 @@ Aquí vemos que lo que enviamos con el siguiente formato
 lo recibimos como
 
 ```javascript
-{this.props.nombre}
+{props.nombre}
 ```
 
 en el componente original. ¿Pero qué es [_props_](https://reactjs.org/docs/components-and-props.html)? Un mapa de propiedades que cada componente mantiene en forma aislada. De esa manera podemos tener dos componentes que saludan y cada uno muestra diferente información en base al parámetro que enviamos.
@@ -181,11 +181,15 @@ _shallow_ es una función que decora nuestro componente para no levantar ningún
 El segundo test prueba en forma aislada que el componente que saluda lo hace en forma correcta:
 
 ```javascript
-it('si saludo a Manola me dice Hola Manola', () => {
-  const wrapper = shallow(<Saludo nombre='Manola' />)
-  const p = wrapper.find('.App-intro')
-  expect(p.text()).toBe("Hola, Manola")
-})
+describe('Saludo', () => {
+    describe('cuando le paso un nombre', () => {
+        it('lo muestra', () => {
+            const saludo = shallow(<Saludo nombre='Manola' />)
+            const p = saludo.find('.App-intro')
+            expect(p.text()).toBe("Hola, Manola")
+        })
+    })
+})    
 ```
 
 - envolvemos el componente Saludo en un objeto _wrapper_ pasándole como nombre 'Manola'
@@ -199,14 +203,17 @@ Algo bueno que tienen los tests de React es que conservan su unitariedad, se pru
 Por último vamos a testear el contador envolviendo el componente y luego simulando que apretamos 3 veces el botón "+":
 
 ```javascript
-it('sumar - contador de 0 a 3', () => {
-  const wrapper = shallow(<Contador/>)
-  const btnSumar = wrapper.find('#sumar')
-  btnSumar.simulate('click')
-  btnSumar.simulate('click')
-  btnSumar.simulate('click')
-  const contador = wrapper.find('#contadorValue')
-  expect(contador.text()).toBe('3')
+describe('Contador', () => {
+    describe('cuando se suma', () => {
+        it('el contador incrementa', () => {
+            const contador = shallow(<Contador />)
+            sumar(contador);
+            sumar(contador);
+            sumar(contador);
+            const valor = contador.find('#contadorValue')
+            expect(valor.text()).toBe("3")
+        })
+    })
 })
 ```
 

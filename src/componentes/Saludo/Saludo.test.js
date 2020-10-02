@@ -14,8 +14,8 @@ describe('Saludo', () => {
   describe('cuando no le paso un nombre', () => {
     it('no muestra nada', () => {
       const saludo = shallow(<Saludo />)
-      const p = saludo.find('.App-intro')
-      expect(p.text()).toBe("Hola, ")
+      const htmlSaludo = saludo.find('.App-intro')
+      expect(htmlSaludo.text()).toBe("Hola, ")
     })
   })
 

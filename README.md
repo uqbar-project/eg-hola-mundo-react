@@ -180,8 +180,8 @@ El segundo test prueba en forma aislada que el componente que saluda lo hace en 
 describe('cuando le paso un nombre', () => {
     it('lo muestra', () => {
         const saludo = shallow(<Saludo nombre='Manola' />)
-        const p = saludo.find('.App-intro')
-        expect(p.text()).toBe("Hola, Manola")
+        const htmlSaludo = saludo.find('.App-intro')
+        expect(htmlSaludo.text()).toBe("Hola, ")
     })
 })
 ```

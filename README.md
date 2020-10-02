@@ -10,9 +10,7 @@ En este primer ejemplo veremos los primeros conceptos de la tecnología React
 - propiedades (_props_)
 - manejo del estado de un componente 
 
-Como es nuestro primer ejemplo, estaremos definiendo dos componentes en el archivo _App.js_. A futuro estaremos dividiendo la aplicación en diferentes archivos.
-
-# Componente que saluda
+## Componente que saluda
 
 El componente que saluda recibe como parámetro un string, que corresponde al nombre de la persona que queremos saludar. El componente principal de React llama al que saluda mediante su tag correspondiente:
 
@@ -22,10 +20,6 @@ function App(){
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">React - Hola mundo!</h1>
-        </header>
         <Saludo nombre="Martín" />
         <Saludo nombre="Mariano" />
 ```
@@ -37,19 +31,19 @@ function App(){
 - más componentes React que importamos de bibliotecas de terceros 
 - más código javascript que se evalúa para renderizarse en el contenido a mostrar, por ejemplo con la variable logo 
 
-Saludo se define como una funcion que sabe mostrar un div:
+Saludo se define como una función que sabe mostrar un div:
 
 ```javascript
-function Saludo(props) {
-  render() {
+const Saludo = (props) => {
     return (
-      <p className="App-intro">
-        Hola, {props.nombre}
-      </p>
+        <p className="App-intro">
+            Hola, {props.nombre}
+        </p>
     )
-  }
 }
 ```
+
+Entonces, la vista es una función.
 
 ## Props
 
@@ -65,9 +59,11 @@ lo recibimos como
 {props.nombre}
 ```
 
-en el componente original. ¿Pero qué es [_props_](https://reactjs.org/docs/components-and-props.html)? Un mapa de propiedades que cada componente mantiene en forma aislada. De esa manera podemos tener dos componentes que saludan y cada uno muestra diferente información en base al parámetro que enviamos.
+en el componente original. ¿Pero qué es [_props_](https://reactjs.org/docs/components-and-props.html)? 
 
-# Contador
+> Props es un mapa de propiedades que cada componente mantiene en forma aislada. De esa manera podemos tener dos componentes que saludan y cada uno muestra diferente información en base al parámetro que enviamos.
+
+## Contador
 
 El contador es un componente que tiene cambios de estado. Comienza inicialmente en cero, pero luego el usuario puede
 
@@ -95,12 +91,12 @@ class Contador extends Component {
     this.state = { contador: 0 }
   }
 
-  sumar() {
-    this.cambiarContador(this.state.contador + 1)
+  sumar = () => {
+      this.setState({ contador: this.state.contador + 1 })
   }
 
-  restar() {
-    this.cambiarContador(this.state.contador - 1)
+  restar = () => {
+      this.setState({ contador: this.state.contador - 1 })
   }
 
   cambiarContador(n) {
@@ -133,7 +129,7 @@ Como resultado, la vista volverá a renderizarse:
 
 ## Programación reactiva
 
-Como además el único elemento del tag asociado al state es el tag Typography que muestra un título H3 de HTML, React manipula en forma inteligente el [DOM](https://es.wikipedia.org/wiki/Document_Object_Model) para que la interacción con el browser sea mínima. Con F12 activamos las herramientas de desarrollo del navegador:
+Debido a que además el único elemento del tag asociado al state es el tag Typography que muestra un título H3 de HTML, React manipula en forma inteligente el [DOM](https://es.wikipedia.org/wiki/Document_Object_Model) para que la interacción con el browser sea mínima. Con F12 activamos las herramientas de desarrollo del navegador:
 
 ![DOM](video/ReactConversorDOM.gif)
 
@@ -181,15 +177,13 @@ _shallow_ es una función que decora nuestro componente para no levantar ningún
 El segundo test prueba en forma aislada que el componente que saluda lo hace en forma correcta:
 
 ```javascript
-describe('Saludo', () => {
-    describe('cuando le paso un nombre', () => {
-        it('lo muestra', () => {
-            const saludo = shallow(<Saludo nombre='Manola' />)
-            const p = saludo.find('.App-intro')
-            expect(p.text()).toBe("Hola, Manola")
-        })
+describe('cuando le paso un nombre', () => {
+    it('lo muestra', () => {
+        const saludo = shallow(<Saludo nombre='Manola' />)
+        const p = saludo.find('.App-intro')
+        expect(p.text()).toBe("Hola, Manola")
     })
-})    
+})
 ```
 
 - envolvemos el componente Saludo en un objeto _wrapper_ pasándole como nombre 'Manola'
@@ -203,18 +197,16 @@ Algo bueno que tienen los tests de React es que conservan su unitariedad, se pru
 Por último vamos a testear el contador envolviendo el componente y luego simulando que apretamos 3 veces el botón "+":
 
 ```javascript
-describe('Contador', () => {
-    describe('cuando se suma', () => {
-        it('el contador incrementa', () => {
-            const contador = shallow(<Contador />)
-            sumar(contador);
-            sumar(contador);
-            sumar(contador);
-            const valor = contador.find('#contadorValue')
-            expect(valor.text()).toBe("3")
-        })
-    })
+describe('cuando se suma', () => {
+  it('el contador incrementa', () => {
+    const contador = shallow(<Contador />)
+    sumar(contador)
+    sumar(contador)
+    sumar(contador)
+    const valor = contador.find({ 'data-testid': 'contadorValue' })
+    expect(valor.text()).toBe("3")
+  })
 })
 ```
 
-Como resultado el componente debe mostrar en el tag h3 el valor '3' (estén atentos a que es un string).
+Como resultado el componente debe mostrar en el tag h3 el valor '3' (estén atentos a que es un string). Para buscar elementos, lo hacemos a través del atributo `data-testid`.

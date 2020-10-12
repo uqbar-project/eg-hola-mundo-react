@@ -2,7 +2,7 @@ import React from 'react'
 
 const Saludo = (props) => {
   return (
-    <p className="App-intro">
+    <p data-testid="saludo">
       Hola, {props.nombre}
     </p>
   )

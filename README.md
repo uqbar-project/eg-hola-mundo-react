@@ -1,6 +1,7 @@
-# Hola mundo: primer ejemplo React
 
 [![Build Status](https://travis-ci.org/uqbar-project/eg-hola-mundo-react.svg?branch=master)](https://travis-ci.org/uqbar-project/eg-hola-mundo-react)
+
+# Hola mundo: primer ejemplo React
 
 ![demo](video/demo.gif)
 
@@ -10,36 +11,61 @@ En este primer ejemplo veremos los primeros conceptos de la tecnología React
 - propiedades (_props_)
 - manejo del estado de un componente 
 
-## Componente que saluda
+## Creando nuestro proyecto
 
-El componente que saluda recibe como parámetro un string, que corresponde al nombre de la persona que queremos saludar. El componente principal de React llama al que saluda mediante su tag correspondiente:
+Podés ver cómo hacerlo en [esta página](./yarn.md), lo que incluye también un mini-tutorial de `yarn`, la herramienta similar a `npm`.
 
-```javascript
-function App(){
+## Componente principal
 
-  render() {
-    return (
-      <div className="App">
-        <Saludo nombre="Martín" />
-        <Saludo nombre="Mariano" />
+La aplicación levanta como una _lambda_, es decir una función que devuelve como output el HTML a mostrar (lo que debe renderizar):
+
+```jsx
+const App = () => {
+  return (
+    <div className="App">
+      <Saludo nombre="Martín" />
+      <Saludo nombre="Mariano" />
+      <Contador />
+      <Contador />
+    </div>
+  )
+}
 ```
 
-¿Dónde lo hace? En el método render() que trabaja con [**JSX**](https://reactjs.org/docs/introducing-jsx.html), que no es HTML, sino javascript que trabaja con
+Recordemos que `const App = () => {}` es el formato en _arrow functions_ similar a
+
+```jsx
+function App() {
+  return (
+    ...
+  )
+}
+```
+
+Esta forma de definir un componente presentacional de React es la variante **funcional**, porque pensamos una página como una función. El código que escribimos es [**JSX**](https://reactjs.org/docs/introducing-jsx.html), **es javascript** con
 
 - tags HTML
+- más código javascript que se evalúa
 - más los componentes React que nosotros definimos 
 - más componentes React que importamos de bibliotecas de terceros 
-- más código javascript que se evalúa para renderizarse en el contenido a mostrar, por ejemplo con la variable logo 
 
-Saludo se define como una función que sabe mostrar un div:
+## Componente que saluda
+
+El componente que saluda recibe como parámetro un string, que corresponde al nombre de la persona que queremos saludar. El componente principal de React llama al que saluda mediante un atributo:
+
+```jsx
+<Saludo nombre="Martín" />
+```
+
+Saludo se define como otro componente funcional que sabe mostrar un div:
 
 ```javascript
 const Saludo = (props) => {
-    return (
-        <p className="App-intro">
-            Hola, {props.nombre}
-        </p>
-    )
+  return (
+    <p data-testid="saludo">
+      Hola, {props.nombre}
+    </p>
+  )
 }
 ```
 
@@ -49,7 +75,7 @@ Entonces, la vista es una función.
 
 Aquí vemos que lo que enviamos con el siguiente formato
 
-```html
+```jsx
  <Saludo nombre="Martín" />
 ```
 
@@ -82,49 +108,52 @@ En nuestro caso, el estado es simplemente un objeto que contiene un valor numér
 { "contador": 0 }
 ```
 
-Al iniciar el componente el contador será 0, y cuando el usuario presione click sobre el botón Sumar o Restar se debe generar un nuevo estado, con el contador incrementado o decrementado:
+Al iniciar el componente el contador será 0, y cuando el usuario presione click sobre el botón Sumar o Restar se debe generar un nuevo estado, con el contador incrementado o decrementado. Los componentes de React que almacenan estado debemos convertirlas en clases (no pueden ser funciones, al menos no en la variante _vainilla_: luego aprenderemos técnicas para mantener estado dentro de un componente con estilo funcional).
 
-```javascript
-class Contador extends Component {
+```jsx
+export default class Contador extends Component {
   constructor(props) {
     super(props)
-    this.state = { contador: 0 }
+    this.state = {
+      contador: 0
+    }
   }
 
   sumar = () => {
-      this.setState({ contador: this.state.contador + 1 })
+    this.setState({ contador: this.state.contador + 1 })
   }
 
   restar = () => {
-      this.setState({ contador: this.state.contador - 1 })
-  }
-
-  cambiarContador(n) {
-    this.setState({ contador: n })
+    this.setState({ contador: this.state.contador - 1 })
   }
 ```
 
 Como resultado, la vista volverá a renderizarse:
 
-```javascript
-  render() {
-    return (
-      <Card>
-        <CardContent>
-          <Typography gutterBottom variant="title" component="h2">
-            Contador
-          </Typography>
-          <h3 id="contadorValue">
-            {this.state.contador}
-          </h3>
-          <Button variant="contained" id="restar" size="medium" color="secondary" onClick={(event) => { this.restar() }}>-</Button>
-          &nbsp;
-          <Button variant="contained" id="sumar" size="medium" color="primary" onClick={(event) => { this.sumar() }}>+</Button>
-          <br />
-        </CardContent>
-      </Card>        
-    )
-  }
+```jsx
+render() {
+  return (
+    <Card>
+      <CardContent>
+        ...
+        <h3 data-testid="contadorValue">
+          {this.state.contador}
+        </h3>
+        <Button
+          variant="contained" data-testid="restar" size="medium" color="secondary"
+          onClick={this.restar}>
+          -
+        </Button>
+        <Button
+          variant="contained" data-testid="sumar" size="medium" color="primary"
+          onClick={this.sumar}>
+          +
+        </Button>
+        <br />
+      </CardContent>
+    </Card>
+  )
+}
 ```
 
 ## Programación reactiva
@@ -162,15 +191,15 @@ Para la presentación utilizamos [Material-UI](https://material-ui.com/), por si
 
 # Testing
 
-Para el testeo unitario utilizaremos [Enzyme](https://github.com/airbnb/enzyme), un framework de testeo realizado por el equipo de desarrollo de Airbnb. El primer test es que el componente App se renderiza sin romperse, es el que generó create-react-app pero adaptado a los mocks de Enzyme:
+Para el testeo unitario utilizaremos JEST + [React Testing Library](https://testing-library.com/), un framework de testeo unitario que viene con varias funciones utilitarias y opciones de debugging que nos facilitarán la vida cuando los tests fallen. El primer test es que el componente App se renderiza sin romperse, lo que llamamos comunmente un _smoke test_ o test de humo que verifica por ejemplo que hay un saludo a Mariano:
 
-```javascript
-it('app levanta ok', () => {
-  shallow(<App />)
+```js
+test('smoke test for App', () => {
+  const { getByText } = render(<App />)
+  const saludoAMariano = getByText(/Mariano/i)
+  expect(saludoAMariano).toBeInTheDocument()
 })
 ```
-
-_shallow_ es una función que decora nuestro componente para no levantar ningún navegador. Esto lo hacemos en el archivo App.test.js del directorio src.
 
 ## Componente que saluda
 
@@ -178,16 +207,16 @@ El segundo test prueba en forma aislada que el componente que saluda lo hace en 
 
 ```javascript
 describe('cuando le paso un nombre', () => {
-    it('lo muestra', () => {
-        const saludo = shallow(<Saludo nombre='Manola' />)
-        const htmlSaludo = saludo.find('.App-intro')
-        expect(htmlSaludo.text()).toBe("Hola, ")
-    })
+  it('lo muestra', () => {
+    const { getByTestId } = render(<Saludo nombre='Manola' />)
+    const appIntro = getByTestId('saludo')
+    expect(appIntro).toHaveTextContent('Hola, Manola')
+  })
 })
 ```
 
-- envolvemos el componente Saludo en un objeto _wrapper_ pasándole como nombre 'Manola'
-- el _wrapper_ de Enzyme permite que busquemos por clase, id o por un tag específico. En este caso buscamos un elemento HTML que tenga como clase App-intro
+- con `render` envolvemos el componente Saludo en un objeto _wrapper_ pasándole como nombre 'Manola'
+- el _wrapper_ devuelve un objeto con varias funciones, una de las que nos interesa es buscar por `data-testid`
 - luego chequeamos que el texto de ese tag sea 'Hola, Manola'
 
 Algo bueno que tienen los tests de React es que conservan su unitariedad, se prueban en forma aislada.
@@ -199,14 +228,17 @@ Por último vamos a testear el contador envolviendo el componente y luego simula
 ```javascript
 describe('cuando se suma', () => {
   it('el contador incrementa', () => {
-    const contador = shallow(<Contador />)
-    sumar(contador)
-    sumar(contador)
-    sumar(contador)
-    const valor = contador.find({ 'data-testid': 'contadorValue' })
-    expect(valor.text()).toBe("3")
+    const { getByTestId } = render(<Contador />)
+    const botonSumar = getByTestId('sumar')
+    botonSumar.click()
+    botonSumar.click()
+    botonSumar.click()
+    const valor = getByTestId('contadorValue')
+    expect(valor).toHaveTextContent('3')
   })
 })
 ```
 
 Como resultado el componente debe mostrar en el tag h3 el valor '3' (estén atentos a que es un string). Para buscar elementos, lo hacemos a través del atributo `data-testid`.
+
+Esta variante es la más reciente de React, si estás buscando una versión anterior, podés consultar el branch [clase-2019](https://github.com/uqbar-project/eg-hola-mundo-react/tree/clase-2019).

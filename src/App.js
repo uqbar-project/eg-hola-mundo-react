@@ -1,9 +1,11 @@
-import React from 'react'
 import './App.css'
+
+import React from 'react'
+
 import Contador from './componentes/Contador/Contador'
 import Saludo from './componentes/Saludo/Saludo'
 
-export default function App() {
+const App = () => {
   return (
     <div className="App">
       <Saludo nombre="Martín" />
@@ -13,3 +15,5 @@ export default function App() {
     </div>
   )
 }
+
+export default App

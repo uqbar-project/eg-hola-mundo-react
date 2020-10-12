@@ -3,7 +3,7 @@
 
 # Hola mundo: primer ejemplo React
 
-![demo](video/demo.gif)
+![demo](video/demo2020.gif)
 
 En este primer ejemplo veremos los primeros conceptos de la tecnología React
 

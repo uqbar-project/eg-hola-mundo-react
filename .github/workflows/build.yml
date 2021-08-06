@@ -18,6 +18,13 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 14.x
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: Download dependencies with npm
       run: npm install
     - run: npm ci
@@ -29,5 +36,5 @@ jobs:
     - name: Adding coverage badge
       uses: demyanets/angular-coverage-badges-action@v1
       with:
-        coverage-summary-path: coverage/eg-hola-mundo-react/coverage-summary.json
+        coverage-summary-path: ./coverage/coverage-final.json
         github_token: ${{ secrets.GITHUB_TOKEN }}

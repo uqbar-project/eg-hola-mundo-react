@@ -24,6 +24,8 @@ jobs:
     - run: npm run build --if-present
     - name: Run the tests and generate coverage report
       run: npm test -- --coverage
+    - name: ls
+      run: find .
     - name: Adding coverage badge
       uses: demyanets/angular-coverage-badges-action@v1
       with:

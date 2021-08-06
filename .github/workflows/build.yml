@@ -36,5 +36,5 @@ jobs:
     - name: Adding coverage badge
       uses: demyanets/angular-coverage-badges-action@v1
       with:
-        coverage-summary-path: ./coverage/coverage-final.json
+        coverage-summary-path: ./coverage/coverage-summary.json
         github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/uqbar-project/eg-hola-mundo-react.svg?branch=master)](https://travis-ci.org/uqbar-project/eg-hola-mundo-react)
+[![Build React App](https://github.com/uqbar-project/eg-hola-mundo-react/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/uqbar-project/eg-hola-mundo-react/actions/workflows/build.yml)
 
 # Hola mundo: primer ejemplo React
 

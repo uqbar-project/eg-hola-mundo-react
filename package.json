@@ -25,7 +25,15 @@
     ]
   },
   "jest": {
-    "collectCoverageFrom": ["./src"]
+    "coverageReporters": [ "html", "text-summary", "json-summary"],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/reportWebVitals.js",
+      "!**/index.js",
+      "!**/setupTests.js",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ]
   },
   "browserslist": {
     "production": [

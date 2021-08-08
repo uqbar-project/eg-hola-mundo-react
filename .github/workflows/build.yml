@@ -28,7 +28,7 @@ jobs:
     - name: Download dependencies with npm
       run: npm install
     - run: npm ci
-    - run: npm run build --if-present
+    - run: npm run lint && npm run build --if-present
     - name: Run the tests and generate coverage report
       run: npm test -- --coverage
     - name: Adding coverage badge

@@ -8,4 +8,8 @@ const Saludo = (props) => {
   )
 }
 
+Saludo.propTypes = {
+  nombre: PropTypes.string,
+}
+
 export default Saludo

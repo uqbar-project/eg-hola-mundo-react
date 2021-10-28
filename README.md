@@ -201,6 +201,16 @@ test('smoke test for App', () => {
 })
 ```
 
+No obstante, esta variante es muy frágil, si queremos saludar a otra persona el test se va a romper y eso no necesariamente indica que la aplicación no levantó. Podemos modificarlo para buscar que haya algún tipo de encabezado (h1, h2, h3, etc.):
+
+```js
+test('smoke test for App', () => {
+  const { getAllByRole } = render(<App />)
+  const headings = getAllByRole('heading')
+  expect(headings).not.toBe.empty
+})
+```
+
 ## Componente que saluda
 
 El segundo test prueba en forma aislada que el componente que saluda lo hace en forma correcta:

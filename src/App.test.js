@@ -4,7 +4,7 @@ import React from 'react'
 import App from './App'
 
 test('smoke test for App', () => {
-  const { getByText } = render(<App />)
-  const saludoAMariano = getByText(/Mariano/i)
-  expect(saludoAMariano).toBeInTheDocument()
+  const { getAllByRole } = render(<App />)
+  const headings = getAllByRole('heading')
+  expect(headings).not.toBe.empty
 })

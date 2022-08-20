@@ -3,7 +3,7 @@
 
 # Hola mundo: primer ejemplo React
 
-![demo](video/demo2020.gif)
+![demo](video/demo2022.gif)
 
 En este primer ejemplo veremos los primeros conceptos de la tecnología React
 
@@ -160,7 +160,7 @@ render() {
 
 Debido a que además el único elemento del tag asociado al state es el tag Typography que muestra un título H3 de HTML, React manipula en forma inteligente el [DOM](https://es.wikipedia.org/wiki/Document_Object_Model) para que la interacción con el browser sea mínima. Con F12 activamos las herramientas de desarrollo del navegador:
 
-![DOM](video/ReactConversorDOM.gif)
+![DOM](video/ReactVDomChange.gif)
 
 ## Repaso del ciclo de vida del contador
 

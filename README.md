@@ -195,8 +195,8 @@ Para el testeo unitario utilizaremos JEST + [React Testing Library](https://test
 
 ```js
 test('smoke test for App', () => {
-  const { getByText } = render(<App />)
-  const saludoAMariano = getByText(/Mariano/i)
+  render(<App />)
+  const saludoAMariano = screen.getByText(/Mariano/i)
   expect(saludoAMariano).toBeInTheDocument()
 })
 ```
@@ -205,9 +205,10 @@ No obstante, esta variante es muy frágil, si queremos saludar a otra persona el
 
 ```js
 test('smoke test for App', () => {
-  const { getAllByRole } = render(<App />)
-  const headings = getAllByRole('heading')
-  expect(headings).not.toBe.empty
+  render(<App />)
+  const headings = screen.getAllByRole('heading')
+  // expect(headings).not.toBe.empty puede tirar un error molesto del linter
+  expect(headings).not.toBe('') 
 })
 ```
 
@@ -218,15 +219,15 @@ El segundo test prueba en forma aislada que el componente que saluda lo hace en 
 ```javascript
 describe('cuando le paso un nombre', () => {
   it('lo muestra', () => {
-    const { getByTestId } = render(<Saludo nombre='Manola' />)
-    const appIntro = getByTestId('saludo')
+    render(<Saludo nombre='Manola' />)
+    const appIntro = screen.getByTestId('saludo')
     expect(appIntro).toHaveTextContent('Hola, Manola')
   })
 })
 ```
 
 - con `render` envolvemos el componente Saludo en un objeto _wrapper_ pasándole como nombre 'Manola'
-- el _wrapper_ devuelve un objeto con varias funciones, una de las que nos interesa es buscar por `data-testid`
+- el objeto screen que guarda el estado del último render, y nos ofrece métodos helpers para por ejemplo buscar por `data-testid` (el método es `getByTestId`)
 - luego chequeamos que el texto de ese tag sea 'Hola, Manola'
 
 Algo bueno que tienen los tests de React es que conservan su unitariedad, se prueban en forma aislada.
@@ -237,18 +238,16 @@ Por último vamos a testear el contador envolviendo el componente y luego simula
 
 ```javascript
 describe('cuando se suma', () => {
-  it('el contador incrementa', () => {
-    const { getByTestId } = render(<Contador />)
-    const botonSumar = getByTestId('sumar')
-    botonSumar.click()
-    botonSumar.click()
-    botonSumar.click()
-    const valor = getByTestId('contadorValue')
+  it('el contador incrementa', async () => {
+    render(<Contador />)
+    const botonSumar = screen.getByTestId('sumar')
+    act(() => { botonSumar.click() })
+    act(() => { botonSumar.click() })
+    act(() => { botonSumar.click() })
+    const valor = screen.getByTestId('contadorValue')
     expect(valor).toHaveTextContent('3')
   })
 })
 ```
 
 Como resultado el componente debe mostrar en el tag h3 el valor '3' (estén atentos a que es un string). Para buscar elementos, lo hacemos a través del atributo `data-testid`.
-
-Esta variante es la más reciente de React, si estás buscando una versión anterior, podés consultar el branch [clase-2019](https://github.com/uqbar-project/eg-hola-mundo-react/tree/clase-2019).

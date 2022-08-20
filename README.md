@@ -251,3 +251,11 @@ describe('cuando se suma', () => {
 ```
 
 Como resultado el componente debe mostrar en el tag h3 el valor '3' (estén atentos a que es un string). Para buscar elementos, lo hacemos a través del atributo `data-testid`.
+
+Dentro del test es conveniente envolver todo cambio de estado en una función wrapper `act`:
+
+```js
+act(() => { botonSumar.click() })
+```
+
+eso permite que se registren correctamente.

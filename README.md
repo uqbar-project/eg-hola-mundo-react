@@ -102,11 +102,7 @@ Mientras que las _props_ no modifican el estado del componente (son de lectura),
 
 ![image](images/react-cycle.jpeg)
 
-En nuestro caso, el estado es simplemente un objeto que contiene un valor numérico:
-
-```json
-{ "contador": 0 }
-```
+En nuestro caso, el estado es simplemente **un número**.
 
 Al iniciar el componente el contador será 0, y cuando el usuario presione click sobre el botón Sumar o Restar se debe generar un nuevo estado, con el contador incrementado o decrementado. 
 
@@ -117,34 +113,35 @@ export const Contador = (props) => {
   const [contador, setContador] = useState(0)
 ```
 
-Inicialmente, si invocamos a la función `contador()`, tendremos como respuesta un 0, en caso de invocar a `setContador`
+La función `useState`
 
-Como resultado, la vista volverá a renderizarse:
+- recibe un valor (en este caso el número 0)
+- y devuelve una lista de 2 funciones: el primer elemento es una función que permite conocer el valor del estado y el segundo permite asignarle un nuevo valor (generando un nuevo estado)
+
+Por ejemplo: `contador()` nos devuelve inicialmente 0, `setContador(1)` produce un nuevo estado que dispara el render de la función Contador.
 
 ```jsx
-render() {
-  return (
-    <Card>
-      <CardContent>
-        ...
-        <h3 data-testid="contadorValue">
-          {this.state.contador}
-        </h3>
-        <Button
-          variant="contained" data-testid="restar" size="medium" color="secondary"
-          onClick={this.restar}>
-          -
-        </Button>
-        <Button
-          variant="contained" data-testid="sumar" size="medium" color="primary"
-          onClick={this.sumar}>
-          +
-        </Button>
-        <br />
-      </CardContent>
-    </Card>
-  )
-}
+return (
+  <Card>
+    <CardContent>
+      ...
+      <h3 data-testid="contadorValue">
+        {contador}
+      </h3>
+      <Button
+        variant="contained" data-testid="restar" size="medium" color="secondary"
+        onClick={restar}>
+        -
+      </Button>
+      <Button
+        variant="contained" data-testid="sumar" size="medium" color="primary"
+        onClick={sumar}>
+        +
+      </Button>
+      <br />
+    </CardContent>
+  </Card>
+)
 ```
 
 ## Programación reactiva
@@ -158,20 +155,20 @@ Debido a que además el único elemento del tag asociado al state es el tag Typo
 1. Inicialmente, nuestro estado tiene un contador en cero. 
 2. Se muestra la vista con el contador en cero.
 3. El usuario presiona el botón "+"
-4. Eso dispara el evento sumar(), que modifica el estado a { contador: 1 } mediante un setState()
+4. Eso dispara el evento sumar(), que modifica el estado a `1` mediante la invocación a `setContador(1)`
 5. Al cambiar el estado, React vuelve a ejecutar el método render() buscando los tags del DOM que se han modificado
 6. El usuario ve en el navegador el valor "1" asociado al contador
 
 ## Cuidados a tener con el efecto
 
-ReactJS trabaja con las ideas de la programación funcional, esto implica:
+ReactJS trabaja con las ideas de la programación funcional, esto implica que nuestros valores dentro del estado deben ser **inmutables**. En el caso de un número el mismo diseño de los números como valores inmutables lo hace intuitivo, pero si trabajamos con personas que tienen un nombre, es importante cambiar la referencia a la persona de manera de que React detecte los cambios:
 
-- nunca modificar directamente el valor de un objeto. En este caso un número en javascript es inmutable, al igual que un string. Pero **si tenemos un objeto propio, o una colección, no debemos modificarla directamente porque esto rompe el contrato de React**
-- tampoco debemos actualizar el estado directamente
+```js
+// INCORRECTO, si pepita referencia al estado actual
+setPersona(pepita)
 
-```javascript
-this.state = { contador: 3 }      // INCORRECTO
-this.setState( {contador : 3} )   // CORRECTO
+// CORRECTO, se genera un nuevo objeto -> React dispara el render
+setPersona(Object.assign(new Persona(), pepita))
 ```
 
 Más adelante veremos otros ejemplos de uso.
@@ -241,7 +238,7 @@ describe('cuando se suma', () => {
 })
 ```
 
-Como resultado el componente debe mostrar en el tag h3 el valor '3' (estén atentos a que es un string). Para buscar elementos, lo hacemos a través del atributo `data-testid`.
+El test espera mostrar el valor '3' en el elemento cuyo atributo `data-testid` sea `contadorValue` (estén atentos a que es un string).
 
 Dentro del test es conveniente envolver todo cambio de estado en una función wrapper `act`:
 

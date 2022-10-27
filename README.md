@@ -13,7 +13,7 @@ En este primer ejemplo veremos los primeros conceptos de la tecnología React
 
 ## Creando nuestro proyecto
 
-Podés ver cómo hacerlo en [esta página](./yarn.md), lo que incluye también un mini-tutorial de `yarn`, la herramienta similar a `npm`.
+Lo hacemos siguiendo [los pasos que están en la wiki](https://wiki.uqbar.org/wiki/articles/react-instalacion.html#tocAnchor-1-5).
 
 ## Componente principal
 
@@ -108,25 +108,16 @@ En nuestro caso, el estado es simplemente un objeto que contiene un valor numér
 { "contador": 0 }
 ```
 
-Al iniciar el componente el contador será 0, y cuando el usuario presione click sobre el botón Sumar o Restar se debe generar un nuevo estado, con el contador incrementado o decrementado. Los componentes de React que almacenan estado debemos convertirlas en clases (no pueden ser funciones, al menos no en la variante _vainilla_: luego aprenderemos técnicas para mantener estado dentro de un componente con estilo funcional).
+Al iniciar el componente el contador será 0, y cuando el usuario presione click sobre el botón Sumar o Restar se debe generar un nuevo estado, con el contador incrementado o decrementado. 
+
+Para poder mantener un estado, vamos a utilizar un **hook** que nos ofrece dos funciones: una para obtener el valor del estado, y el otro para generar un nuevo estado, lo que va a producir un nuevo render.
 
 ```jsx
-export default class Contador extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      contador: 0
-    }
-  }
-
-  sumar = () => {
-    this.setState({ contador: this.state.contador + 1 })
-  }
-
-  restar = () => {
-    this.setState({ contador: this.state.contador - 1 })
-  }
+export const Contador = (props) => {
+  const [contador, setContador] = useState(0)
 ```
+
+Inicialmente, si invocamos a la función `contador()`, tendremos como respuesta un 0, en caso de invocar a `setContador`
 
 Como resultado, la vista volverá a renderizarse:
 

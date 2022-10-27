@@ -2,7 +2,7 @@ import { screen, render } from '@testing-library/react'
 import React from 'react'
 import { act } from 'react-dom/test-utils'
 
-import Contador from './Contador'
+import { Contador } from './Contador'
 
 describe('Contador', () => {
   describe('cuando se suma', () => {

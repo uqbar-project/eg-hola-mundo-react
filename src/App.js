@@ -2,7 +2,7 @@ import './App.css'
 
 import React from 'react'
 
-import Contador from './componentes/Contador/Contador'
+import { Contador } from './componentes/Contador/Contador'
 import Saludo from './componentes/Saludo/Saludo'
 
 const App = () => {

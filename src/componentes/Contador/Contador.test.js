@@ -6,20 +6,25 @@ import { Contador } from './Contador'
 
 describe('Contador', () => {
   describe('cuando se suma', () => {
-    it('el contador incrementa', async () => {
+    it('el contador incrementa', () => {
+      // Arrange
       render(<Contador />)
+      
+      // Act
       const botonSumar = screen.getByTestId('sumar')
       act(() => { botonSumar.click() })
       act(() => { botonSumar.click() })
       act(() => { botonSumar.click() })
       const valor = screen.getByTestId('contadorValue')
+
+      // Assert
       expect(valor).toHaveTextContent('3')
     })
 
 
   })
   describe('cuando se resta', () => {
-    it('el contador decrementa', async () => {
+    it('el contador decrementa', () => {
       render(<Contador />)
       const botonSumar = screen.getByTestId('restar')
       act(() => { botonSumar.click() })

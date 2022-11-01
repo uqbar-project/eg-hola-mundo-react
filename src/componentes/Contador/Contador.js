@@ -22,7 +22,7 @@ export const Contador = (props) => {
       <CardContent>
         <Typography variant="h4">
           Contador
-          </Typography>
+        </Typography>
         <h3 data-testid="contadorValue">
           {contador}
         </h3>

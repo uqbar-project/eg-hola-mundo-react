@@ -2,11 +2,10 @@ import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import React from 'react'
 import { useState } from 'react'
 import './Contador.css'
 
-export const Contador = (props) => {
+export const Contador = (_) => {
   const [contador, setContador] = useState(0)
 
   const sumar = () => {
@@ -23,10 +22,10 @@ export const Contador = (props) => {
         <Typography variant="h4">
           Contador
         </Typography>
-        <h3 data-testid="contadorValue">
+        <div data-testid="contadorValue" className="contador">
           {contador}
-        </h3>
-        <div class="botonera">
+        </div>
+        <div className="botonera">
           <Button
             variant="contained" data-testid="restar" size="medium" color="secondary"
             onClick={restar}>-</Button>

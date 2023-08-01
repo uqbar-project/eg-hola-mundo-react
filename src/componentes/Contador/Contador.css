@@ -1,3 +1,10 @@
+.MuiPaper-root {
+  background-color: rgb(233, 233, 233) !important;
+  border: 1px solid gray;
+  border-radius: 15px !important;
+  margin: 1em;
+}
+
 .botonera {
   display: flex;
   justify-content: center;
@@ -6,4 +13,10 @@
 
 .MuiCardContent-root {
   margin: 0.2rem 0;
+}
+
+.contador {
+  padding: 1em;
+  font-size: 1.5em;
+  font-weight: bold;
 }

@@ -1,12 +1,12 @@
 import { screen, render } from '@testing-library/react'
-import React from 'react'
 import { act } from 'react-dom/test-utils'
+import { describe, expect, test } from 'vitest'
 
 import { Contador } from './Contador'
 
 describe('Contador', () => {
   describe('cuando se suma', () => {
-    it('el contador incrementa', () => {
+    test('el contador incrementa', () => {
       // Arrange
       render(<Contador />)
       
@@ -15,22 +15,22 @@ describe('Contador', () => {
       act(() => { botonSumar.click() })
       act(() => { botonSumar.click() })
       act(() => { botonSumar.click() })
-      const valor = screen.getByTestId('contadorValue')
+      const valor = screen.getByTestId('contadorValue').textContent
 
       // Assert
-      expect(valor).toHaveTextContent('3')
+      expect(valor).to.equal('3')
     })
 
 
   })
   describe('cuando se resta', () => {
-    it('el contador decrementa', () => {
+    test('el contador decrementa', () => {
       render(<Contador />)
       const botonSumar = screen.getByTestId('restar')
       act(() => { botonSumar.click() })
       act(() => { botonSumar.click() })
-      const valor = screen.getByTestId('contadorValue')
-      expect(valor).toHaveTextContent('-2')
+      const valor = screen.getByTestId('contadorValue').textContent
+      expect(valor).to.equal('-2')
     })
   })
 })

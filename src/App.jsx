@@ -1,7 +1,7 @@
 import './App.css'
+import { Contador } from './components/Contador/Contador'
 
-import { Contador } from './componentes/Contador/Contador'
-import Saludo from './componentes/Saludo/Saludo'
+import Saludo from './components/Saludo/Saludo'
 
 const App = () => {
   return (

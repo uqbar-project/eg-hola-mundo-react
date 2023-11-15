@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 import './Contador.css'
 
-export const Contador = (_) => {
+export const Contador = () => {
   const [contador, setContador] = useState(0)
 
   const sumar = () => {

@@ -1,4 +1,5 @@
 .MuiPaper-root {
+  width: 25em;
   background-color: rgb(233, 233, 233) !important;
   border: 1px solid gray;
   border-radius: 15px !important;

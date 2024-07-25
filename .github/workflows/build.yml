@@ -27,8 +27,7 @@ jobs:
     - run: npm run build --if-present
     - name: Run the tests and generate coverage report
       run: npm test -- --coverage
-    - name: Adding coverage badge
-      uses: demyanets/angular-coverage-badges-action@v1
-      with:
-        coverage-summary-path: ./coverage/coverage-summary.json
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload coverage reports to Codecov
+            uses: codecov/codecov-action@v4.0.1
+            with:
+              token: ${{ secrets.CODECOV_TOKEN }}

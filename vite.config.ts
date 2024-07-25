@@ -17,7 +17,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     coverage: {
-      reporter: ['text', 'json', 'html', 'json-summary'],
+      reporter: ['lcov', 'json', 'html', 'json-summary'],
     },
   }
 })

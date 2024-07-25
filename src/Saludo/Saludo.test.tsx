@@ -14,7 +14,7 @@ describe('Saludo', () => {
 
   describe('cuando no le paso un nombre', () => {
     test('no muestra nada', () => {
-      render(<Saludo />)
+      render(<Saludo nombre={''} />)
       const appIntro = screen.getByTestId('saludo').textContent
       expect(appIntro).to.equal('Hola, ')
     })

@@ -1,5 +1,5 @@
 
-[![Build React App](https://github.com/uqbar-project/eg-hola-mundo-react/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/uqbar-project/eg-hola-mundo-react/actions/workflows/build.yml) ![coverage](./badges/coverage/coverage.svg)
+[![Build React App](https://github.com/uqbar-project/eg-hola-mundo-react/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/uqbar-project/eg-hola-mundo-react/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/uqbar-project/eg-hola-mundo-react/graph/badge.svg?token=K7qJrVmaPq)](https://codecov.io/gh/uqbar-project/eg-hola-mundo-react)
 
 # Hola mundo: primer ejemplo React
 

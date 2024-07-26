@@ -1,7 +1,6 @@
 import './App.css'
-import { Contador } from './components/Contador/Contador'
-
-import Saludo from './components/Saludo/Saludo'
+import { Contador } from './Contador/Contador'
+import Saludo from './Saludo/Saludo'
 
 const App = () => {
   return (

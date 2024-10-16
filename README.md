@@ -20,16 +20,14 @@ Lo hacemos siguiendo [los pasos que están en la wiki](https://wiki.uqbar.org/wi
 La aplicación levanta como una _lambda_, es decir una función que devuelve como output el HTML a mostrar (lo que debe renderizar):
 
 ```jsx
-const App = () => {
-  return (
-    <div className="App">
-      <Saludo nombre="Martín" />
-      <Saludo nombre="Mariano" />
-      <Contador />
-      <Contador />
-    </div>
-  )
-}
+const App = () => (
+  <div className="App">
+    <Saludo nombre="Martín" />
+    <Saludo nombre="Mariano" />
+    <Contador />
+    <Contador />
+  </div>
+)
 ```
 
 Recordemos que `const App = () => {}` es el formato en _arrow functions_ similar a
@@ -42,10 +40,10 @@ function App() {
 }
 ```
 
-Esta forma de definir un componente presentacional de React es la variante **funcional**, porque pensamos una página como una función. El código que escribimos es [**JSX**](https://reactjs.org/docs/introducing-jsx.html), **es javascript** con
+Esta forma de definir un componente presentacional de React es la variante **funcional**, porque pensamos una página como una función. Ésta es la variante oficial desde 2019. El código que escribimos es [**JSX o TSX**](https://react.dev/learn/writing-markup-with-jsx), que consiste en
 
 - tags HTML
-- más código javascript que se evalúa
+- más código javascript/typescript que se evalúa
 - más los componentes React que nosotros definimos 
 - más componentes React que importamos de bibliotecas de terceros 
 
@@ -69,8 +67,6 @@ const Saludo = (props) => {
 }
 ```
 
-Entonces, la vista es una función.
-
 ## Props
 
 Aquí vemos que lo que enviamos con el siguiente formato
@@ -85,7 +81,7 @@ lo recibimos como
 {props.nombre}
 ```
 
-en el componente original. ¿Pero qué es [_props_](https://reactjs.org/docs/components-and-props.html)? 
+en el componente original. ¿Pero qué es [_props_](https://react.dev/learn/passing-props-to-a-component#passing-props-to-a-component)? 
 
 > Props es un mapa de propiedades que cada componente mantiene en forma aislada. De esa manera podemos tener dos componentes que saludan y cada uno muestra diferente información en base al parámetro que enviamos.
 
@@ -209,13 +205,13 @@ describe('cuando le paso un nombre', () => {
   it('lo muestra', () => {
     render(<Saludo nombre='Manola' />)
     const appIntro = screen.getByTestId('saludo')
-    expect(appIntro).toHaveTextContent('Hola, Manola')
+    expect(appIntro).to.equal('Hola, Manola')
   })
 })
 ```
 
 - con `render` envolvemos el componente Saludo en un objeto _wrapper_ pasándole como nombre 'Manola'
-- el objeto screen que guarda el estado del último render, y nos ofrece métodos helpers para por ejemplo buscar por `data-testid` (el método es `getByTestId`)
+- el objeto screen guarda el estado del último render, y nos ofrece métodos helpers para por ejemplo buscar por `data-testid` (el método es `getByTestId`)
 - luego chequeamos que el texto de ese tag sea 'Hola, Manola'
 
 Algo bueno que tienen los tests de React es que conservan su unitariedad, se prueban en forma aislada.

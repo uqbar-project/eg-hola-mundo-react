@@ -1,5 +1,5 @@
 import { screen, render } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
+import { act } from 'react'
 import { describe, expect, test } from 'vitest'
 
 import { Contador } from './Contador'
@@ -26,9 +26,9 @@ describe('Contador', () => {
   describe('cuando se resta', () => {
     test('el contador decrementa', () => {
       render(<Contador />)
-      const botonSumar = screen.getByTestId('restar')
-      act(() => { botonSumar.click() })
-      act(() => { botonSumar.click() })
+      const botonRestar = screen.getByTestId('restar')
+      act(() => { botonRestar.click() })
+      act(() => { botonRestar.click() })
       const valor = screen.getByTestId('contadorValue').textContent
       expect(valor).to.equal('-2')
     })

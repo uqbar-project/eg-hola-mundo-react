@@ -5,6 +5,7 @@ import { describe, expect, test } from 'vitest'
 import { Contador } from './Contador'
 
 describe('Contador', () => {
+
   describe('cuando se suma', () => {
     test('el contador incrementa', () => {
       // Arrange
@@ -20,9 +21,8 @@ describe('Contador', () => {
       // Assert
       expect(valor).to.equal('3')
     })
-
-
   })
+
   describe('cuando se resta', () => {
     test('el contador decrementa', () => {
       render(<Contador />)
@@ -33,4 +33,5 @@ describe('Contador', () => {
       expect(valor).to.equal('-2')
     })
   })
+
 })

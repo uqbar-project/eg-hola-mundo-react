@@ -185,14 +185,20 @@ test('smoke test for App', () => {
 })
 ```
 
-No obstante, esta variante es muy frágil, si queremos saludar a otra persona el test se va a romper y eso no necesariamente indica que la aplicación no levantó. Podemos modificarlo para buscar que haya algún tipo de encabezado (h1, h2, h3, etc.):
+No obstante, esta variante es muy frágil, si queremos saludar a otra persona el test se va a romper y eso no necesariamente indica que la aplicación no levantó. Podemos modificarlo para buscar que haya algún tipo de encabezado (h1, h2, h3, etc.), pero es más fácil si agregamos un `data-testid` para nuestra app:
 
-```js
+```ts
+const App = () => (
+  <div className="App" data-testid="app"> ...
+```
+
+ahora sí podemos testearlo de esta manera
+
+```ts
 test('smoke test for App', () => {
   render(<App />)
-  const headings = screen.getAllByRole('heading')
-  // expect(headings).not.toBe.empty puede tirar un error molesto del linter
-  expect(headings).not.toBe('') 
+  const headings = screen.findByTestId('app')
+  expect(headings).toBeTruthy()
 })
 ```
 

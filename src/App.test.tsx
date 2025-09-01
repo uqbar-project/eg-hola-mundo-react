@@ -5,6 +5,6 @@ import App from './App'
 
 test('smoke test for App', () => {
   render(<App />)
-  const headings = screen.getAllByRole('heading')
-  expect(headings).not.toBe('')
+  const headings = screen.findByTestId('app')
+  expect(headings).toBeTruthy()
 })

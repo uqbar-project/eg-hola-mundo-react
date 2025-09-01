@@ -1,23 +1,44 @@
-.MuiPaper-root {
-  width: 25em;
-  background-color: rgb(233, 233, 233) !important;
-  border: 1px solid gray;
-  border-radius: 15px !important;
-  margin: 1em;
+:root {
+  font-size: 12px;
 }
 
-.botonera {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
+.card {
+  background-color: antiquewhite;
+  padding: 2em 0;
 }
 
-.MuiCardContent-root {
-  margin: 0.2rem 0;
+.title {
+  font-size: 2.5rem;
+  font-style: bold;
 }
 
 .contador {
-  padding: 1em;
-  font-size: 1.5em;
-  font-weight: bold;
+  margin: 1em 0;
+  font-size: 1.5rem;
+}
+
+.botonera {
+  margin: 1em 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+button {
+  width: 7em;
+  height: 3em;
+  border: 0;
+  border-radius: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.primary {
+  background-color: lightseagreen;
+}
+
+.secondary {
+  background-color: darkseagreen;
 }

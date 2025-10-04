@@ -2,6 +2,7 @@ import tsParser from '@typescript-eslint/parser'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import reactRefreshPlugin from 'eslint-plugin-react-refresh'
+import reactPlugin from 'eslint-plugin-react'
 
 export default [
   {
@@ -23,12 +24,16 @@ export default [
         clearInterval: 'readonly',
         setTimeout: 'readonly',
         clearTimeout: 'readonly',
+        HTMLInputElement: 'readonly',
+        HTMLElement: 'readonly',
+        HTMLDivElement: 'readonly', 
       },
     },
     plugins: {
       '@typescript-eslint': tsPlugin,
       'react-hooks': reactHooksPlugin,
       'react-refresh': reactRefreshPlugin,
+      react: reactPlugin,
     },
     rules: {
       'no-unused-vars': 'warn',
@@ -40,6 +45,9 @@ export default [
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'semi': ['error', 'never'],
       'quotes': ['error', 'single'],
+      'react/react-in-jsx-scope': 'off', 
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/explicit-function-return-type': 'off', 
     },
   },
 ]

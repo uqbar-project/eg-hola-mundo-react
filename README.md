@@ -21,11 +21,14 @@ La aplicación levanta como una _lambda_, es decir una función que devuelve com
 
 ```tsx
 const App = () => (
-  <div className="App">
+  <div className="App" data-testid="app">
     <Saludo nombre="Martín" />
     <Saludo nombre="Mariano" />
+    <hr />
     <Contador />
+    <hr />
     <Contador />
+    <hr />
   </div>
 )
 ```
@@ -55,15 +58,11 @@ El componente que saluda recibe como parámetro un string, que corresponde al no
 <Saludo nombre="Martín" />
 ```
 
-Saludo se define como otro componente funcional que sabe mostrar un div:
+Saludo se define como otro componente funcional que sabe mostrar un párrafo:
 
-```javascript
-const Saludo = (props) => {
-  return (
-    <p data-testid="saludo">
-      Hola, {props.nombre}
-    </p>
-  )
+```tsx
+const Saludo = ({ nombre }: { nombre: string }) => {
+  return <p data-testid="saludo">Hola, {nombre}</p>
 }
 ```
 
@@ -77,8 +76,8 @@ Aquí vemos que lo que enviamos con el siguiente formato
 
 lo recibimos como
 
-```javascript
-{props.nombre}
+```typescript
+{nombre}
 ```
 
 en el componente original. ¿Pero qué es [_props_](https://react.dev/learn/passing-props-to-a-component#passing-props-to-a-component)? 
@@ -118,31 +117,38 @@ Por ejemplo: `contador()` nos devuelve inicialmente 0, `setContador(1)` produce 
 
 ```tsx
 return (
-  <Card>
-    <CardContent>
-      ...
-      <h3 data-testid="contadorValue">
-        {contador}
-      </h3>
-      <Button
-        variant="contained" data-testid="restar" size="medium" color="secondary"
-        onClick={restar}>
+  <div className="card">
+    <div className="title">Contador</div>
+    <div data-testid="contadorValue" className="contador">
+      {contador}
+    </div>
+    <div className="botonera">
+      <button
+        type="button"
+        className="secondary"
+        data-testid="restar"
+        color="secondary"
+        onClick={restar}
+      >
         -
-      </Button>
-      <Button
-        variant="contained" data-testid="sumar" size="medium" color="primary"
-        onClick={sumar}>
+      </button>
+      <button
+        type="button"
+        className="primary"
+        data-testid="sumar"
+        color="primary"
+        onClick={sumar}
+      >
         +
-      </Button>
-      <br />
-    </CardContent>
-  </Card>
+      </button>
+    </div>
+  </div>
 )
 ```
 
 ## Programación reactiva
 
-Debido a que además el único elemento del tag asociado al state es el tag Typography que muestra un título H3 de HTML, React manipula en forma inteligente el [DOM](https://es.wikipedia.org/wiki/Document_Object_Model) para que la interacción con el browser sea mínima. Con F12 activamos las herramientas de desarrollo del navegador:
+Debido a que además el único elemento del tag asociado al state es el elemento que muestra el valor del contador, React manipula en forma inteligente el [DOM](https://es.wikipedia.org/wiki/Document_Object_Model) para que la interacción con el browser sea mínima. Con F12 activamos las herramientas de desarrollo del navegador:
 
 ![DOM](video/ReactVDomChange.gif)
 
@@ -169,9 +175,9 @@ setPersona(Object.assign(new Persona(), pepita))
 
 Más adelante veremos otros ejemplos de uso.
 
-# Frameworks de presentación
+# Presentación visual
 
-Para la presentación utilizamos [Material-UI](https://material-ui.com/), por si el lector quiere conocer.
+La aplicación usa estilos locales de CSS (`App.css`, `Contador.css`) para dar formato a los componentes y los botones del contador.
 
 # Testing
 
@@ -206,7 +212,7 @@ test('smoke test for App', () => {
 
 El segundo test prueba en forma aislada que el componente que saluda lo hace en forma correcta:
 
-```javascript
+```typescript
 describe('cuando le paso un nombre', () => {
   it('lo muestra', () => {
     render(<Saludo nombre='Manola' />)
@@ -226,7 +232,7 @@ Algo bueno que tienen los tests de React es que conservan su unitariedad, se pru
 
 Por último vamos a testear el contador envolviendo el componente y luego simulando que apretamos 3 veces el botón "+":
 
-```javascript
+```typescript
 describe('cuando se suma', () => {
   it('el contador incrementa', async () => {
     render(<Contador />)

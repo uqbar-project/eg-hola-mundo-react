@@ -6,7 +6,7 @@ import Saludo from './Saludo'
 describe('Saludo', () => {
   describe('cuando le paso un nombre', () => {
     test('lo muestra', () => {
-      render(<Saludo nombre='Manola' />)
+      render(<Saludo nombre="Manola" />)
       const appIntro = screen.getByTestId('saludo').textContent
       expect(appIntro).to.equal('Hola, Manola')
     })
@@ -19,5 +19,4 @@ describe('Saludo', () => {
       expect(appIntro).to.equal('Hola, ')
     })
   })
-
 })

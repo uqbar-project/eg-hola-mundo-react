@@ -14,18 +14,29 @@ export const Contador = () => {
 
   return (
     <div className="card">
-      <div className="title">
-          Contador
-      </div>
+      <div className="title">Contador</div>
       <div data-testid="contadorValue" className="contador">
         {contador}
       </div>
       <div className="botonera">
         <button
-          className="secondary" data-testid="restar" color="secondary"
-          onClick={restar}>-</button>
-        <button className="primary" data-testid="sumar" color="primary"
-        onClick={sumar}>+</button>
+          type="button"
+          className="secondary"
+          data-testid="restar"
+          color="secondary"
+          onClick={restar}
+        >
+          -
+        </button>
+        <button
+          type="button"
+          className="primary"
+          data-testid="sumar"
+          color="primary"
+          onClick={sumar}
+        >
+          +
+        </button>
       </div>
     </div>
   )

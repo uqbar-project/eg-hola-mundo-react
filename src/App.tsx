@@ -6,11 +6,11 @@ const App = () => (
   <div className="App" data-testid="app">
     <Saludo nombre="Martín" />
     <Saludo nombre="Mariano" />
-    <hr/>
+    <hr />
     <Contador />
-    <hr/>
+    <hr />
     <Contador />
-    <hr/>
+    <hr />
   </div>
 )
 

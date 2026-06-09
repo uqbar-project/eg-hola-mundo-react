@@ -1,15 +1,14 @@
-import { screen, render, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
 
 import { Contador } from './Contador'
 
 describe('Contador', () => {
-
   describe('cuando se suma', () => {
     test('el contador incrementa', async () => {
       // Arrange
       render(<Contador />)
-      
+
       // Act
       const botonSumar = screen.getByTestId('sumar')
       await waitFor(() => {
@@ -36,5 +35,4 @@ describe('Contador', () => {
       })
     })
   })
-
 })

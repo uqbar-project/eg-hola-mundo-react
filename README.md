@@ -19,7 +19,7 @@ Lo hacemos siguiendo [los pasos que están en la wiki](https://wiki.uqbar.org/wi
 
 La aplicación levanta como una _lambda_, es decir una función que devuelve como output el HTML a mostrar (lo que debe renderizar):
 
-```jsx
+```tsx
 const App = () => (
   <div className="App">
     <Saludo nombre="Martín" />
@@ -32,7 +32,7 @@ const App = () => (
 
 Recordemos que `const App = () => {}` es el formato en _arrow functions_ similar a
 
-```jsx
+```tsx
 function App() {
   return (
     ...
@@ -51,7 +51,7 @@ Esta forma de definir un componente presentacional de React es la variante **fun
 
 El componente que saluda recibe como parámetro un string, que corresponde al nombre de la persona que queremos saludar. El componente principal de React llama al que saluda mediante un atributo:
 
-```jsx
+```tsx
 <Saludo nombre="Martín" />
 ```
 
@@ -71,7 +71,7 @@ const Saludo = (props) => {
 
 Aquí vemos que lo que enviamos con el siguiente formato
 
-```jsx
+```tsx
  <Saludo nombre="Martín" />
 ```
 
@@ -104,7 +104,7 @@ Al iniciar el componente el contador será 0, y cuando el usuario presione click
 
 Para poder mantener un estado, vamos a utilizar un **hook** que nos ofrece dos funciones: una para obtener el valor del estado, y el otro para generar un nuevo estado, lo que va a producir un nuevo render.
 
-```jsx
+```tsx
 export const Contador = (props) => {
   const [contador, setContador] = useState(0)
 ```
@@ -116,7 +116,7 @@ La función `useState`
 
 Por ejemplo: `contador()` nos devuelve inicialmente 0, `setContador(1)` produce un nuevo estado que dispara el render de la función Contador.
 
-```jsx
+```tsx
 return (
   <Card>
     <CardContent>
@@ -159,7 +159,7 @@ Debido a que además el único elemento del tag asociado al state es el tag Typo
 
 ReactJS trabaja con las ideas de la programación funcional, esto implica que nuestros valores dentro del estado deben ser **inmutables**. En el caso de un número el mismo diseño de los números como valores inmutables lo hace intuitivo, pero si trabajamos con personas que tienen un nombre, es importante cambiar la referencia a la persona de manera de que React detecte los cambios:
 
-```js
+```ts
 // INCORRECTO, si pepita referencia al estado actual
 setPersona(pepita)
 
@@ -177,7 +177,7 @@ Para la presentación utilizamos [Material-UI](https://material-ui.com/), por si
 
 Para el testeo unitario utilizaremos JEST + [React Testing Library](https://testing-library.com/), un framework de testeo unitario que viene con varias funciones utilitarias y opciones de debugging que nos facilitarán la vida cuando los tests fallen. El primer test es que el componente App se renderiza sin romperse, lo que llamamos comunmente un _smoke test_ o test de humo que verifica por ejemplo que hay un saludo a Mariano:
 
-```js
+```ts
 test('smoke test for App', () => {
   render(<App />)
   const saludoAMariano = screen.getByText(/Mariano/i)
@@ -244,7 +244,7 @@ El test espera mostrar el valor '3' en el elemento cuyo atributo `data-testid` s
 
 Dentro del test es conveniente envolver todo cambio de estado en una función wrapper `act`:
 
-```js
+```ts
 act(() => { botonSumar.click() })
 ```
 

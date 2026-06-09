@@ -3,35 +3,36 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=10.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
     "preview": "vite preview",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "clean": "rm -rf dist node_modules coverage",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@testing-library/react": "16.3.0",
-    
-    "@types/react": "19.2.0",
-    "@types/react-dom": "19.2.0",
-    "@typescript-eslint/eslint-plugin": "8.45.0",
-    "@typescript-eslint/parser": "8.45.0",
-    "@vitejs/plugin-react-swc": "4.1.0",
-    "@vitest/coverage-v8": "3.2.4",
-    "eslint": "9.37.0",
-    "eslint-plugin-react-hooks": "6.1.1",
-    "eslint-plugin-react-refresh": "0.4.23",
-    "eslint-plugin-react": "7.37.5",
-    "jsdom": "27.0.0",
-    "typescript": "5.9.3",
-    "vite": "7.1.9",
-    "vitest": "3.2.4"
+    "@biomejs/biome": "1.9.4",
+    "@testing-library/react": "16.2.0",
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "@vitejs/plugin-react-swc": "4.3.1",
+    "@vitest/coverage-v8": "3.0.5",
+    "@vitest/ui": "3.0.5",
+    "jsdom": "26.0.0",
+    "typescript": "5.7.3",
+    "vite": "6.1.0",
+    "vitest": "3.0.5"
   }
 }

@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "packageManager": "pnpm@10.0.0",
   "engines": {
     "node": ">=24.0.0",
     "pnpm": ">=10.0.0"
@@ -16,7 +15,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "clean": "rm -rf dist node_modules coverage"
+    "clean": "rm -rf dist node_modules coverage",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "react": "19.0.0",

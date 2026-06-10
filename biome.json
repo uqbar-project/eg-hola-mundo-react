@@ -1,8 +1,6 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "organizeImports": {
-    "enabled": true
-  },
+  "$schema": "https://biomejs.dev/schemas/2.4.16/schema.json",
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": {
@@ -12,7 +10,6 @@
         "useExhaustiveDependencies": "warn"
       },
       "style": {
-        "noVar": "error",
         "useBlockStatements": "error",
         "useConst": "error",
         "useTemplate": "error"
@@ -21,7 +18,8 @@
         "noDoubleEquals": "error",
         "noExplicitAny": "error",
         "noImplicitAnyLet": "error",
-        "noAssignInExpressions": "error"
+        "noAssignInExpressions": "error",
+        "noVar": "error"
       },
       "complexity": {
         "noForEach": "off",
@@ -55,6 +53,12 @@
     }
   },
   "files": {
-    "ignore": ["node_modules", "dist", "build", "coverage"]
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/build",
+      "!**/coverage"
+    ]
   }
 }

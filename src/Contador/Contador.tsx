@@ -16,7 +16,9 @@ export const Contador = () => {
     <div className="card">
       <div className="title">Contador</div>
       <div data-testid="contadorValue" className="contador">
-        {contador}
+        <span key={contador} className="contadorValor">
+          {contador}
+        </span>
       </div>
       <div className="botonera">
         <button

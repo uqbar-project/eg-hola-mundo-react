@@ -3,42 +3,86 @@
 }
 
 .card {
-  background-color: rgb(248, 241, 231);
-  padding: 2em 0;
+  background: linear-gradient(135deg, #ffffff, #f4f4f5);
+  border: 1px solid #e4e4e7;
+  border-radius: 24px;
+  padding: 3em 2.5em;
+  box-shadow: 0 4px 16px -6px rgba(24, 39, 75, 0.12);
 }
 
 .title {
-  font-size: 2.5rem;
-  font-style: bold;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #71717a;
 }
 
 .contador {
-  margin: 1em 0;
-  font-size: 1.5rem;
+  margin: 0.8em 0;
+}
+
+.contadorValor {
+  display: inline-block;
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  color: #27272a;
+  animation: pop 0.25s ease;
 }
 
 .botonera {
   margin: 1em 0;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 14px;
 }
 
 button {
-  width: 7em;
+  width: 6em;
   height: 3em;
   border: 0;
-  border-radius: 10px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease;
 }
 
 button:hover {
-  cursor: pointer;
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+button:active {
+  transform: translateY(0) scale(0.94);
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.5);
+  outline-offset: 2px;
 }
 
 .primary {
-  background-color: lightseagreen;
+  background: #2563eb;
 }
 
 .secondary {
-  background-color: darkseagreen;
+  background: #db2777;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

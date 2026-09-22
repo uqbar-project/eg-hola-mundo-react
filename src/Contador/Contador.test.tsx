@@ -2,6 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
 
 import { Contador } from './Contador'
+import userEvent from '@testing-library/user-event'
 
 describe('Contador', () => {
   describe('cuando se suma', () => {
@@ -11,28 +12,29 @@ describe('Contador', () => {
 
       // Act
       const botonSumar = screen.getByTestId('sumar')
-      await waitFor(() => {
-        botonSumar.click()
-        botonSumar.click()
-        botonSumar.click()
-        // Assert
-        const valor = screen.getByTestId('contadorValue').textContent
-        expect(valor).to.equal('3')
-      })
+      await userEvent.click(botonSumar)
+      await userEvent.click(botonSumar)
+      await userEvent.click(botonSumar)
+      
+      // Assert
+      const valor = screen.getByTestId('contadorValue').textContent
+      expect(valor).to.equal('3')
     })
   })
 
   describe('cuando se resta', () => {
     test('el contador decrementa', async () => {
+      // Arrange
       render(<Contador />)
+
+      // Act
       const botonRestar = screen.getByTestId('restar')
-      await waitFor(() => {
-        botonRestar.click()
-        botonRestar.click()
-        // Assert
-        const valor = screen.getByTestId('contadorValue').textContent
-        expect(valor).to.equal('-2')
-      })
+      await userEvent.click(botonRestar)
+      await userEvent.click(botonRestar)
+
+      // Assert
+      const valor = screen.getByTestId('contadorValue').textContent
+      expect(valor).to.equal('-2')
     })
   })
 })

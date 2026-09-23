@@ -7,16 +7,16 @@ describe('Saludo', () => {
   describe('cuando le paso un nombre', () => {
     test('lo muestra', () => {
       render(<Saludo nombre="Manola" />)
-      const appIntro = screen.getByTestId('saludo').textContent
-      expect(appIntro).to.equal('Hola, Manola')
+      const saludo = screen.getByTestId('saludo').textContent
+      expect(saludo).to.equal('Hola, Manola')
     })
   })
 
   describe('cuando no le paso un nombre', () => {
     test('no muestra nada', () => {
       render(<Saludo nombre={''} />)
-      const appIntro = screen.getByTestId('saludo').textContent
-      expect(appIntro).to.equal('Hola, ')
+      const saludo = screen.getByTestId('saludo').textContent
+      expect(saludo).to.equal('Hola, ')
     })
   })
 })

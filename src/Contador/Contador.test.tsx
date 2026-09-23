@@ -17,7 +17,7 @@ describe('Contador', () => {
       await userEvent.click(botonSumar)
 
       // Assert
-      const valor = screen.getByTestId('contadorValue').textContent
+      const valor = screen.getByTestId('valor').textContent
       expect(valor).to.equal('3')
     })
   })
@@ -33,7 +33,7 @@ describe('Contador', () => {
       await userEvent.click(botonRestar)
 
       // Assert
-      const valor = screen.getByTestId('contadorValue').textContent
+      const valor = screen.getByTestId('valor').textContent
       expect(valor).to.equal('-2')
     })
   })

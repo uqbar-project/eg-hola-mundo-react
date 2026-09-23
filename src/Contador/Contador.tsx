@@ -15,12 +15,12 @@ export const Contador = () => {
   return (
     <div className="card">
       <div className="title">Contador</div>
-      <div data-testid="contadorValue" className="contador">
-        <span key={contador} className="contadorValor">
+      <div data-testid="valor" className="counter">
+        <span key={contador} className="counterValue">
           {contador}
         </span>
       </div>
-      <div className="botonera">
+      <div className="buttonGroup">
         <button
           type="button"
           className="secondary"

@@ -18,11 +18,11 @@
   color: #71717a;
 }
 
-.contador {
+.counter {
   margin: 0.8em 0;
 }
 
-.contadorValor {
+.counterValue {
   display: inline-block;
   font-size: 4.5rem;
   font-weight: 800;
@@ -32,7 +32,7 @@
   animation: pop 0.25s ease;
 }
 
-.botonera {
+.buttonGroup {
   margin: 1em 0;
   display: flex;
   justify-content: center;
